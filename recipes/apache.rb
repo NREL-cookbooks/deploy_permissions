@@ -35,6 +35,8 @@ sudo "deploy_permissions_apache" do
   commands [
     "/sbin/service httpd reload",
     "/etc/init.d/httpd reload",
+    "/sbin/service httpd configtest",
+    "/etc/init.d/httpd configtest",
   ]
 
   host "ALL"
