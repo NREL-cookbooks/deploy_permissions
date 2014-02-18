@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+include_recipe "deploy_permissions"
+include_recipe "torquebox"
 include_recipe "sudo"
 
 acl "#{node[:torquebox][:conf_dir]}/deployments" do

@@ -15,3 +15,11 @@ group node[:deploy_permissions][:group_name] do
   action :modify
   members node[:deploy_permissions][:group_members]
 end
+
+node[:deploy_permissions][:writable_dirs].each do |dir|
+  directory(dir) do
+    user "root"
+    group node[:deploy_permissions][:group_name]
+    mode "775"
+  end
+end

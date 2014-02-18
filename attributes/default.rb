@@ -9,3 +9,4 @@
 
 default[:deploy_permissions][:group_name] = "deploy"
 default[:deploy_permissions][:group_members] = []
+default[:deploy_permissions][:writable_dirs] = []

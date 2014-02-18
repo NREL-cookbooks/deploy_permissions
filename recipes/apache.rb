@@ -7,6 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
+include_recipe "deploy_permissions"
 include_recipe "sudo"
 
 acl "/usr/sbin/a2ensite" do
