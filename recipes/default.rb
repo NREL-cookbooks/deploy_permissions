@@ -7,14 +7,14 @@
 # All rights reserved - Do Not Redistribute
 #
 
+group node[:deploy_permissions][:group_name] do
+  action :create
+end
+
 user node[:deploy_permissions][:user] do
   gid node[:deploy_permissions][:group_name]
   supports :manage_home => true
   shell "/bin/false"
-end
-
-group node[:deploy_permissions][:group_name] do
-  action :create
 end
 
 group node[:deploy_permissions][:group_name] do
