@@ -7,6 +7,12 @@
 # All rights reserved - Do Not Redistribute
 #
 
+user node[:deploy_permissions][:user] do
+  gid node[:deploy_permissions][:group_name]
+  supports :manage_home => true
+  shell "/bin/false"
+end
+
 group node[:deploy_permissions][:group_name] do
   action :create
 end
@@ -16,9 +22,21 @@ group node[:deploy_permissions][:group_name] do
   members node[:deploy_permissions][:group_members]
 end
 
+sudo "deploy_permissions" do
+  template "sudo.erb"
+  variables({
+    :user => node[:deploy_permissions][:user],
+    :group => node[:deploy_permissions][:group_name],
+    :runas => [
+      node[:deploy_permissions][:user],
+      node[:deploy_permissions][:runas],
+    ].flatten.compact.uniq,
+  })
+end
+
 node[:deploy_permissions][:writable_dirs].each do |dir|
   directory(dir) do
-    user "root"
+    user node[:deploy_permissions][:user]
     group node[:deploy_permissions][:group_name]
 
     # Add the setgid bit so all child files/directories automatically become

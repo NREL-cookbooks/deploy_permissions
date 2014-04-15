@@ -1,0 +1,12 @@
+# This file is managed by Chef.
+# Do NOT modify this file directly.
+
+# Allow members of the deploy group to run any command as the deploy user.
+%<%= @group %>  ALL=(<%= @runas.join(",") %>) NOPASSWD:ALL
+
+# Adjust settings when running commands as the deploy user.
+Defaults><%= @user %> !requiretty,!secure_path
+Defaults><%= @user %> env_keep += "PATH JAVA_OPTS LD_LIBRARY_PATH TNS_ADMIN"
+
+# Adjust settings when the deploy user executes sudo commands.
+Defaults:<%= @user %> !requiretty
