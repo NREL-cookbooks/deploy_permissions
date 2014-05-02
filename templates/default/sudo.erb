@@ -8,5 +8,12 @@
 Defaults><%= @user %> !requiretty,!secure_path
 Defaults><%= @user %> env_keep += "PATH JAVA_OPTS LD_LIBRARY_PATH TNS_ADMIN"
 
+# Force a group-writable umask when running commands as the deploy user.
+# This works around "mkdir -p" not supporting default ACLs for our use (and may
+# actually mean we don't need default ACLs at all to force group
+# permissions--should probably revisit).
+Defaults><%= @user %> umask = 0002
+Defaults><%= @user %> umask_override
+
 # Adjust settings when the deploy user executes sudo commands.
 Defaults:<%= @user %> !requiretty
