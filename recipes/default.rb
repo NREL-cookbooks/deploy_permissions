@@ -36,6 +36,7 @@ end
 
 node[:deploy_permissions][:writable_dirs].each do |dir|
   directory(dir) do
+    recursive true
     user node[:deploy_permissions][:user]
     group node[:deploy_permissions][:group_name]
 
