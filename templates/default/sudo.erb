@@ -17,3 +17,6 @@ Defaults><%= @user %> umask_override
 
 # Adjust settings when the deploy user executes sudo commands.
 Defaults:<%= @user %> !requiretty
+
+# Adjust settings when running commands as a member of the deploy group.
+Defaults:%<%= @group %> !requiretty
