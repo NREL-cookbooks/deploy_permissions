@@ -45,6 +45,7 @@ end
 # purposes), but should reload nginx when rotated (so, for example, Passenger
 # Rails log files).
 logrotate_app "nginx_deploy_permissions" do
+  enable node[:deploy_permissions][:nginx][:logrotate_paths].any?
   path node[:deploy_permissions][:nginx][:logrotate_paths]
   frequency "daily"
   rotate node[:nginx][:logrotate][:rotate]
