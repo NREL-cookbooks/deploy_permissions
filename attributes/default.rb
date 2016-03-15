@@ -12,5 +12,6 @@ default[:deploy_permissions][:group_name] = "deploy"
 default[:deploy_permissions][:group_members] = []
 default[:deploy_permissions][:runas] = []
 default[:deploy_permissions][:writable_dirs] = []
+default[:deploy_permissions][:ssh_authorized_keys] = []
 
 default[:deploy_permissions][:nginx][:logrotate_paths] = []
